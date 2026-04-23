@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>منصتي التعليمية</title>
+
+<style>
+body{
+  margin:0;
+  font-family: Arial;
+  background:#f5f7fb;
+  text-align:center;
+}
+
+/* تسجيل الدخول */
+.login-box{
+  background:white;
+  width:280px;
+  margin:100px auto;
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 10px 20px rgba(0,0,0,0.1);
+}
+
+input{
+  width:90%;
+  padding:10px;
+  margin:10px 0;
+}
+
+/* الهيدر */
+.header{
+  background:#1e3a8a;
+  color:white;
+  padding:15px;
+  font-size:20px;
+}
+
+/* كروت */
+.card{
+  background:white;
+  width:280px;
+  margin:20px auto;
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* أزرار */
+.btn{
+  padding:10px 15px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  color:white;
+  margin:5px;
+}
+
+.blue{background:#2563eb;}
+.green{background:#16a34a;}
+.red{background:#dc2626;}
+</style>
+
+</head>
+<body>
+
+<!-- 🔐 LOGIN -->
+<div id="login" class="login-box">
+  <h2>🔐 تسجيل الدخول</h2>
+
+  <input type="text" id="user" placeholder="اسم المستخدم">
+  <input type="password" id="pass" placeholder="كلمة السر">
+
+  <button class="btn blue" onclick="login()">دخول</button>
+
+  <p id="msg" style="color:red;"></p>
+</div>
+
+<!-- 🏠 APP -->
+<div id="app" style="display:none;"></div>
+
+<script>
+
+function login(){
+
+  let user = document.getElementById("user").value;
+  let pass = document.getElementById("pass").value;
+
+  if(user=="admin" && pass=="1234"){
+    document.getElementById("login").style.display="none";
+    document.getElementById("app").style.display="block";
+    home();
+  }else{
+    document.getElementById("msg").innerText="❌ غلط في البيانات";
+  }
+
+}
+
+/* الصفحة الرئيسية */
+function home(){
+  document.getElementById("app").innerHTML = `
+    <div class="header">🎓 منصتي التعليمية</div>
+
+    <div class="card">
+      <h2>👋 أهلا بيك</h2>
+      <button class="btn green" onclick="courses()">📚 الكورسات</button>
+    </div>
+  `;
+}
+
+/* الكورسات */
+function courses(){
+  document.getElementById("app").innerHTML = `
+    <div class="header">📚 الكورسات</div>
+
+    <div class="card">
+      <h3>كورس الأساسيات</h3>
+      <button class="btn green" onclick="lesson()">ابدأ الدرس</button>
+    </div>
+
+    <button class="btn red" onclick="home()">⬅ رجوع</button>
+  `;
+}
+
+/* الدرس */
+function lesson(){
+  document.getElementById("app").innerHTML = `
+    <div class="header">🎥 الدرس الأول</div>
+
+    <div class="card">
+      <video width="250" controls>
+        <source src="video.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <button class="btn red" onclick="courses()">⬅ رجوع للكورسات</button>
+  `;
+}
+
+</script>
+
+</body>
+</html>
